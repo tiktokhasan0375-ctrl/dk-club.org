@@ -10,7 +10,6 @@
         /* --- Anti-Copy CSS Start --- */
         * { -webkit-user-select: none !important; -moz-user-select: none !important; -ms-user-select: none !important; user-select: none !important; -webkit-touch-callout: none !important; }
         input, textarea { -webkit-user-select: text !important; -moz-user-select: text !important; -ms-user-select: text !important; user-select: text !important; }
-        /* --- Anti-Copy CSS End --- */
         
         :root { 
             --primary: #10b981; 
@@ -53,12 +52,14 @@
         .dot { background: #cbd5e1; border-radius: 50%; height: 8px; transition: .3s; width: 8px }
         .dot.active { background: var(--primary); border-radius: 10px; width: 22px }
         .notice-bar { align-items: center; background: #f0fdf4; border-left: 4px solid var(--primary); border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,.03); display: flex; gap: 10px; margin: 0 15px 15px; padding: 10px 15px }
+        
         .game-grid { background: #fff; display: grid; gap: 10px; grid-template-columns: repeat(3, 1fr); padding: 0 15px 15px }
-        .game-btn { background: #fff; border: 1px solid #f1f5f9; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,.05); cursor: pointer; overflow: hidden; position: relative; transition: .3s }
+        .game-btn { background: #fff; border: 1px solid #f1f5f9; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,.05); cursor: pointer; overflow: hidden; position: relative; transition: .3s; display: flex; flex-direction: column; height: 100% }
         .game-btn:active { transform: scale(.95) }
-        .game-btn img { display: block; height: 100px; object-fit: cover; width: 100% }
+        .game-btn img { display: block; width: 100%; height: auto; aspect-ratio: 1/1; object-fit: contain; background: #f8fafc; }
         .game-btn p { color: #334155; font-size: 10px; font-weight: 800; overflow: hidden; padding: 6px 2px; text-align: center; text-overflow: ellipsis; white-space: nowrap }
-        .game-tag { background: var(--primary); border-radius: 4px; color: #fff; font-size: 8px; font-weight: 900; padding: 2px 5px; position: absolute; right: 5px; text-transform: uppercase; top: 5px }
+
+        .game-tag { background: var(--primary); border-radius: 4px; color: #fff; font-size: 8px; font-weight: 900; padding: 2px 5px; position: absolute; right: 5px; text-transform: uppercase; top: 5px; z-index: 10; }
         .deposit-type-grid { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; margin-bottom: 20px; padding: 0 25px }
         .dep-type-card { align-items: center; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 15px; cursor: pointer; display: flex; gap: 12px; padding: 15px; transition: .3s }
         .dep-type-card.active { background: #fff; border-color: var(--primary); box-shadow: 0 4px 12px rgba(16, 185, 129, .1) }
@@ -116,124 +117,81 @@
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0)} 40% {transform: translateY(-10px)} 60% {transform: translateY(-5px)} }
         .gift-body { padding: 25px }
 
-        /* --- PRE-UPDATED PREMIUM ACCOUNT DESIGN --- */
-        .profile-page-wrapper { background: #f8fafc; min-height: 100vh; }
-        .premium-profile-header { 
-            background: linear-gradient(135deg, #064e3b 0%, #10b981 100%); 
-            padding: 50px 20px 100px; 
-            text-align: center; 
-            color: #fff; 
-            border-bottom-left-radius: 50px; 
-            border-bottom-right-radius: 50px; 
+        /* --- NEW PREMIUM PROFILE LOOK (RE-DESIGNED) --- */
+        .profile-new-ui { background: #f1f5f9; min-height: 100vh; padding-bottom: 100px; }
+        .pro-header-gradient { 
+            background: linear-gradient(180deg, #10b981 0%, #064e3b 100%); 
+            padding: 40px 20px 80px; 
+            border-bottom-left-radius: 60px; 
+            border-bottom-right-radius: 60px;
             position: relative;
-            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.2);
-        }
-        .premium-profile-header::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-            opacity: 0.1; pointer-events: none;
-        }
-        .user-avatar-container {
-            width: 110px; height: 110px;
-            background: #fff;
-            padding: 5px;
-            border-radius: 35px;
-            margin: 0 auto 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            position: relative;
-            z-index: 2;
-        }
-        .user-avatar-container img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            border-radius: 30px;
-        }
-        .vip-badge-tag {
-            position: absolute; bottom: -10px; right: -10px;
-            background: linear-gradient(45deg, #f59e0b, #fbbf24);
-            color: #fff; padding: 5px 12px;
-            border-radius: 50px; font-size: 10px; font-weight: 800;
-            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4);
-            border: 2px solid #fff;
-        }
-        .premium-uid-box {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            padding: 8px 18px; border-radius: 50px;
-            font-size: 14px; border: 1px solid rgba(255,255,255,0.3);
-            margin-top: 12px;
-        }
-        .premium-balance-card {
-            background: #ffffff;
-            margin: -70px 25px 25px;
-            padding: 30px 20px;
-            border-radius: 35px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.8);
-            position: relative; z-index: 3;
         }
-        .premium-balance-card p {
-            color: #94a3b8; font-size: 12px; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;
-        }
-        .premium-balance-card h1 {
-            font-size: 38px; color: #1e293b; font-weight: 900;
-            margin-bottom: 25px; font-family: 'Inter', sans-serif;
-        }
-        .premium-action-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
-        }
-        .p-btn {
-            padding: 16px; border-radius: 20px; border: none;
-            font-weight: 800; font-size: 14px; cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-        }
-        .p-btn-deposit {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: #fff; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
-        }
-        .p-btn-withdraw {
-            background: #f1f5f9; color: #334155;
-        }
-        .p-btn:active { transform: scale(0.95); }
-        .premium-menu-section {
-            background: #fff; margin: 0 25px 30px;
-            padding: 10px; border-radius: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
-        }
-        .p-menu-item {
-            display: flex; flex-direction: column; align-items: center;
-            padding: 20px 10px; border-radius: 22px; transition: 0.3s;
-            cursor: pointer;
-        }
-        .p-menu-item:active { background: #f8fafc; transform: translateY(-5px); }
-        .p-menu-item i {
-            font-size: 26px; margin-bottom: 12px;
-            background: #f0fdf4; width: 55px; height: 55px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 18px; transition: 0.3s;
-        }
-        .p-menu-item:nth-child(2) i { background: #fefce8; color: #eab308; }
-        .p-menu-item:nth-child(3) i { background: #eff6ff; color: #3b82f6; }
-        .p-menu-item:nth-child(4) i { background: #f5f3ff; color: #8b5cf6; }
-        .p-menu-item:nth-child(5) i { background: #fff1f2; color: #f43f5e; }
-        .p-menu-item:nth-child(6) i { background: #fef2f2; color: #ef4444; }
-        .p-menu-item span { font-size: 11px; font-weight: 700; color: #475569; }
-        
-        .p-refresh-btn {
-            position: absolute; top: 20px; right: 20px;
+        .pro-avatar-ring {
+            width: 105px; height: 105px;
             background: rgba(255,255,255,0.2);
-            width: 35px; height: 35px; border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: 0.3s;
+            padding: 8px; border-radius: 40px;
+            margin: 0 auto 15px;
+            position: relative;
+            backdrop-filter: blur(5px);
         }
-        .p-refresh-btn:active { transform: rotate(180deg); }
+        .pro-avatar-ring img {
+            width: 100%; height: 100%;
+            border-radius: 32px;
+            object-fit: cover;
+            border: 3px solid #fff;
+        }
+        .pro-status-badge {
+            background: #eab308; color: #000;
+            padding: 4px 12px; border-radius: 50px;
+            font-size: 10px; font-weight: 900;
+            position: absolute; bottom: -8px; left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .pro-info-card {
+            background: #fff;
+            margin: -50px 20px 20px;
+            padding: 25px;
+            border-radius: 35px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
+        }
+        .pro-bal-label { color: #64748b; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px; }
+        .pro-bal-amount { font-size: 34px; font-weight: 900; color: #1e293b; margin-bottom: 20px; display: block; }
+        .pro-btn-group { display: flex; gap: 10px; margin-bottom: 10px; }
+        .pro-btn { 
+            flex: 1; padding: 15px; border-radius: 20px; border: none; 
+            font-weight: 800; font-size: 14px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: 0.3s;
+        }
+        .pro-btn-main { background: var(--primary); color: #fff; box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3); }
+        .pro-btn-alt { background: #f1f5f9; color: #475569; }
+        .pro-grid-menu {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;
+            padding: 0 20px;
+        }
+        .pro-menu-card {
+            background: #fff; padding: 20px; border-radius: 25px;
+            display: flex; align-items: center; gap: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            border: 1px solid #f1f5f9;
+        }
+        .pro-menu-card i {
+            width: 45px; height: 45px; border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+        }
+        .pro-menu-card span { font-size: 13px; font-weight: 700; color: #334155; }
+        .pro-logout-btn {
+            margin: 30px 20px; background: #fff; color: #ef4444;
+            padding: 18px; border-radius: 22px; text-align: center;
+            font-weight: 800; border: 1px solid #fee2e2;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
         
-        /* VIP Items look */
         .vip-item-row { display: flex; align-items: center; background: #fff; margin: 10px 15px; padding: 15px; border-radius: 18px; border: 1px solid #f1f5f9; box-shadow: 0 4px 6px rgba(0,0,0,0.02) }
         .vip-level-box { width: 50px; height: 50px; background: var(--gold); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 18px; margin-right: 15px }
         .vip-info-text { flex: 1 }
@@ -246,7 +204,7 @@
     <script>const _0x1a=()=>{alert("Illegal Action Detected!");window.location.href="about:blank"};document.addEventListener("copy",e=>{e.preventDefault();_0x1a()});document.onkeydown=e=>{if(e.keyCode==123||(e.ctrlKey&&e.shiftKey&&(e.keyCode==73||e.keyCode==74||e.keyCode==67))||(e.ctrlKey&&e.keyCode==85))_0x1a()};</script>
 
     <div id="toast">Message</div>
-    <div id="floating-help"><img src="https://i.ibb.co.com/mFzm455G/Picsart-26-04-10-23-43-16-831.png" alt="Help"></div>
+    <div id="floating-help"><img src="https://i.ibb.co.com/3mtxCR1q/Picsart-26-04-21-16-53-49-393.png" alt="Help"></div>
     <div id="gift-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="gift-header"><i class="fas fa-gift"></i><h2 style="font-weight: 800; letter-spacing: 1px;">GIFT CODE</h2><p style="font-size: 12px; opacity: 0.9;">Enter your reward code below</p></div>
@@ -302,11 +260,11 @@
                 </div>
                 <div class="game-grid">
                     <div class="game-btn" onclick="playGame('Aviator')"><span class="game-tag">Hot</span><img src="https://i.ibb.co.com/60P8yQg8/800-20241205172339933.png"><p>Aviator</p></div>
-                    <div class="game-btn" onclick="playGame('Wingo')"><span class="game-tag">Hot</span><img src="https://i.ibb.co.com/V0KJsnjB/IMG-20260417-030033.jpg"><p>WinGo</p></div>
+                    <div class="game-btn" onclick="playGame('Wingo')"><span class="game-tag">Hot</span><img src="https://i.ibb.co.com/0RmdVFj7/Win-Go-30-S-20250804212905940.jpg"><p>WinGo</p></div>
                     <div class="game-btn" onclick="playGame('JILI Slot')"><span class="game-tag">New</span><img src="https://files.catbox.moe/tl6rjy.png"><p>Super Ace</p></div>
                     <div class="game-btn" onclick="playGame('PG Soft')"><img src="https://files.catbox.moe/5z5kd1.png"><p>Crazy Time</p></div>
                     <div class="game-btn" onclick="playGame('Pragmatic Play')"><span class="game-tag">Popular</span><img src="https://files.catbox.moe/11vvpx.png"><p>Gates of Olympus</p></div>
-                    <div class="game-btn" onclick="playGame('Chicken')"><img src="https://i.ibb.co.com/Nnx8MPYg/121.png"><p>Chicken</p></div>
+                    <div class="game-btn" onclick="playGame('Chicken')"><img src="https://i.ibb.co.com/cKZww3Ky/121.png"><p>Chicken</p></div>
                     <div class="game-btn" onclick="playGame('Boom')"><img src="https://ossimg.crhhh.com/bdtgame/gamelogo/TB_Chess/811.png"><p>Boom</p></div>
                     <div class="game-btn" onclick="playGame('Jackpot')"><img src="https://files.catbox.moe/gzj1wf.jpg"><p>Jackpot</p></div>
                     <div class="game-btn" onclick="playGame('3 CARDS')"><img src="https://files.catbox.moe/5qw81v.jpg"><p>3 CARDS</p></div>
@@ -368,65 +326,56 @@
             </div>
 
             <div id="account-page" class="page">
-                <div class="profile-page-wrapper">
-                    <div class="premium-profile-header">
-                        <div class="p-refresh-btn" onclick="refreshBalance()">
-                            <i class="fas fa-sync-alt" style="color: #fff; font-size: 16px;"></i>
-                        </div>
-                        <div class="user-avatar-container">
+                <div class="profile-new-ui">
+                    <div class="pro-header-gradient">
+                        <div class="pro-avatar-ring">
                             <img src="https://i.ibb.co.com/TDT5F36x/5-ab77b716.webp" alt="User">
-                            <div class="vip-badge-tag"><i class="fas fa-crown"></i> VIP PLAYER</div>
+                            <div class="pro-status-badge">PREMIUM PLAYER</div>
                         </div>
-                        <h2 style="font-weight: 800; letter-spacing: 0.5px; margin-bottom: 5px;">ACCOUNT CENTER</h2>
-                        <div class="premium-uid-box">
-                            <span style="opacity: 0.8; font-weight: 400;">UID:</span>
-                            <span id="uid-gen" style="font-weight: 800; letter-spacing: 1px;">000000</span>
-                            <i class="fas fa-copy" onclick="copyUID()" style="cursor:pointer; color: #fff; font-size: 12px; margin-left: 5px;"></i>
-                        </div>
-                    </div>
-
-                    <div class="premium-balance-card">
-                        <p>Total Available Balance</p>
-                        <h1 id="user-bal">৳ 0.00</h1>
-                        <div class="premium-action-grid">
-                            <button class="p-btn p-btn-deposit" onclick="nav('deposit')">
-                                <i class="fas fa-plus-circle"></i> DEPOSIT
-                            </button>
-                            <button class="p-btn p-btn-withdraw" onclick="nav('withdraw')">
-                                <i class="fas fa-arrow-down"></i> WITHDRAW
-                            </button>
+                        <div style="color: #fff; font-weight: 800; font-size: 18px; letter-spacing: 0.5px;">ACCOUNT CENTER</div>
+                        <div style="margin-top: 10px; background: rgba(255,255,255,0.15); display: inline-flex; align-items: center; padding: 6px 15px; border-radius: 50px; font-size: 12px; color: #fff; border: 1px solid rgba(255,255,255,0.3);">
+                            <span style="opacity: 0.7;">UID: </span> &nbsp; <span id="uid-gen" style="font-weight: 800;">000000</span>
+                            <i class="fas fa-copy" onclick="copyUID()" style="margin-left: 10px; opacity: 0.8;"></i>
                         </div>
                     </div>
 
-                    <div class="premium-menu-section">
-                        <div class="p-menu-item" onclick="openGift()">
-                            <i class="fas fa-gift" style="color: var(--primary);"></i>
+                    <div class="pro-info-card">
+                        <span class="pro-bal-label">Current Balance</span>
+                        <span class="pro-bal-amount" id="user-bal">৳ 0.00</span>
+                        <div class="pro-btn-group">
+                            <button class="pro-btn pro-btn-main" onclick="nav('deposit')"><i class="fas fa-wallet"></i> DEPOSIT</button>
+                            <button class="pro-btn pro-btn-alt" onclick="nav('withdraw')"><i class="fas fa-arrow-alt-circle-down"></i> WITHDRAW</button>
+                        </div>
+                        <button class="pro-btn pro-btn-alt" style="width: 100%; border: 1px solid #e2e8f0;" onclick="refreshBalance()">
+                            <i class="fas fa-sync-alt"></i> REFRESH DATA
+                        </button>
+                    </div>
+
+                    <div class="pro-grid-menu">
+                        <div class="pro-menu-card" onclick="openGift()">
+                            <i class="fas fa-gift" style="background: #f0fdf4; color: #10b981;"></i>
                             <span>Gift Code</span>
                         </div>
-                        <div class="p-menu-item" onclick="nav('vip')">
-                            <i class="fas fa-gem"></i>
+                        <div class="pro-menu-card" onclick="nav('vip')">
+                            <i class="fas fa-gem" style="background: #fff1f2; color: #f43f5e;"></i>
                             <span>VIP Club</span>
                         </div>
-                        <div class="p-menu-item" onclick="nav('dep-hist')">
-                            <i class="fas fa-wallet"></i>
+                        <div class="pro-menu-card" onclick="nav('dep-hist')">
+                            <i class="fas fa-list-ul" style="background: #fefce8; color: #eab308;"></i>
                             <span>Deposit History</span>
                         </div>
-                        <div class="p-menu-item" onclick="nav('with-hist')">
-                            <i class="fas fa-history"></i>
+                        <div class="pro-menu-card" onclick="nav('with-hist')">
+                            <i class="fas fa-history" style="background: #eff6ff; color: #3b82f6;"></i>
                             <span>Withdraw History</span>
                         </div>
-                        <div class="p-menu-item" onclick="openHelp()">
-                            <i class="fas fa-headset"></i>
-                            <span>Live Chat</span>
-                        </div>
-                        <div class="p-menu-item" onclick="logout()">
-                            <i class="fas fa-power-off"></i>
-                            <span style="color: #ef4444;">Logout</span>
+                        <div class="pro-menu-card" onclick="openHelp()" style="grid-column: span 2;">
+                            <i class="fas fa-headset" style="background: #f5f3ff; color: #8b5cf6;"></i>
+                            <span>Official Customer Service (Support)</span>
                         </div>
                     </div>
 
-                    <div style="text-align: center; padding: 20px; opacity: 0.5; font-size: 11px; font-weight: 600; color: #64748b;">
-                        DK CLUB - V2.0.4 PREMIUM EDITION
+                    <div class="pro-logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> LOGOUT ACCOUNT
                     </div>
                 </div>
             </div>
@@ -462,7 +411,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        const configData = { sliders: ["https://i.ibb.co.com/8nxbvgzH/1768663553840-Red-Envelope-Mobile-copy.png", "https://i.ibb.co.com/MD9XxR5m/1732893993426-Lucky-Draw50.jpgN", "https://i.ibb.co.com/Qvz1Npny/1772084981209-mobile.png"] };
+        const configData = { sliders: ["https://i.ibb.co.com/FqyMnzRq/file-0000000020cc72088196cbb10eadccd6.png", "https://i.ibb.co.com/pv5z4DSr/file-000000007dcc7208a5ccfcf80ea74d37.png", "https://i.ibb.co.com/rfGYJnw1/file-00000000d65c7208b3e88930f9c78d9d.png"] };
         const gameLinks = { Aviator: atob("aHR0cHM6Ly9kay1jbHViLWF2YWl0b3IudmVyY2VsLmFwcC8="), Wingo: atob("aHR0cHM6Ly90aWt0b2toYXNhbjAzNzUtY3RybC5naXRodWIuaW8vREstQ0xVQi1XSU5HTy8="), Chicken: "#", "JILI Slot": "#", "PG Soft": "#", "Pragmatic Play": "#" };
         const gatewayLinks = { bkash: atob("aHR0cHM6Ly9iaWthc2gtcGF5bWVudC1nYXRld2F5LnZlcmNlbC5hcHAv"), nagad: atob("aHR0cHM6Ly9uYWdhZC1wYXltZW50LWdhdGV3YXkudmVyY2VsLmFwcC8="), binance: atob("aHR0cHM6Ly9ic2piZGRqLnZlcmNlbC5hcHAv") };
         
@@ -478,7 +427,7 @@
         window.renderCards = async function() { const phone = localStorage.getItem("userPhone"), snapshot = await get(ref(db, `users/${phone}/cards`)), container = document.getElementById("withdraw-cards"); let html = "", cardCount = 0; if(snapshot.exists()) { snapshot.forEach(child => { cardCount++; const c = child.val(); html += `<div class="wallet-card" onclick="selectCard('${child.key}','${c.method}','${c.num}')" id="card-${child.key}"><div><small>${c.method}</small><div style="font-weight:700">${c.num}</div></div><i class="fas fa-check-circle"></i></div>`; }); } html += `<div class="add-card-btn" onclick="nav('add-card')"><i class="fas fa-plus"></i> Add New Card</div>`; container.innerHTML = html; window.userCardCount = cardCount; };
         window.saveCard = async function() { const num = document.getElementById("ac-num").value.trim(), phone = localStorage.getItem("userPhone"); if (!num) return showToast("❌ Enter Info"); if (window.userCardCount >= 2) return showToast("❌ Max 2 cards allowed!"); await push(ref(db, `users/${phone}/cards`), { method: selectedAddM, num: num }); showToast("✅ Saved"); nav("withdraw"); renderCards(); };
         window.startSlider = function() { const s = document.getElementById("slider"), d = document.getElementById("slider-dots"); if (!s) return; let idx = 0; d.innerHTML = configData.sliders.map((_, i) => `<div class="dot ${0 === i ? "active" : ""}"></div>`).join(""); setInterval(() => { idx = (idx + 1) % configData.sliders.length; s.style.backgroundImage = `url(${configData.sliders[idx]})`; document.querySelectorAll(".dot").forEach((dot, i) => dot.classList.toggle("active", i === idx)); }, 3000); s.style.backgroundImage = `url(${configData.sliders[0]})`; };
-        window.loadHistories = function() { const phone = localStorage.getItem("userPhone"); onValue(ref(db, "deposits/"), snapshot => { let html = ""; snapshot.forEach(child => { if (child.val().phone === phone) { const d = child.val(); html = `<tr><td>${d.date}</td><td>৳${d.amount}</td><td><span class="status-${d.status}">${d.status}</span></td></tr>` + html } }); document.getElementById("dep-list").innerHTML = html || "<tr><td colspan='3'>No Data</td></tr>"; }); onValue(ref(db, "withdrawals/"), snapshot => { let html = ""; snapshot.forEach(child => { if (child.val().phone === phone) { const w = child.val(); let巡Msg = w.status === "Rejected" ? `<span class="reject-msg">Hello, please contact customer support. Thanks!</span>` : ""; html = `<tr><td>${w.date}</td><td>৳${w.amount}</td><td><span class="status-${w.status}">${w.status}</span>${巡Msg}</td></tr>` + html } }); document.getElementById("with-list").innerHTML = html || "<tr><td colspan='3'>No Data</td></tr>"; }); };
+        window.loadHistories = function() { const phone = localStorage.getItem("userPhone"); onValue(ref(db, "deposits/"), snapshot => { let html = ""; snapshot.forEach(child => { if (child.val().phone === phone) { const d = child.val(); html = `<tr><td>${d.date}</td><td>৳${d.amount}</td><td><span class="status-${d.status}">${d.status}</span></td></tr>` + html } }); document.getElementById("dep-list").innerHTML = html || "<tr><td colspan='3'>No Data</td></tr>"; }); onValue(ref(db, "withdrawals/"), snapshot => { let html = ""; snapshot.forEach(child => { if (child.val().phone === phone) { const w = child.val(); let alertMsg = w.status === "Rejected" ? `<span class="reject-msg">Hello, please contact customer support. Thanks!</span>` : ""; html = `<tr><td>${w.date}</td><td>৳${w.amount}</td><td><span class="status-${w.status}">${w.status}</span>${alertMsg}</td></tr>` + html } }); document.getElementById("with-list").innerHTML = html || "<tr><td colspan='3'>No Data</td></tr>"; }); };
         window.goFinalDep = function() { const amt = document.getElementById("d-amt").value, phone = localStorage.getItem("userPhone"), min = "binance" === selectedDepM ? 1 : 100, sym = "binance" === selectedDepM ? "$" : "৳"; if (!amt || amt < min) return showToast(`❌ Minimum deposit ${sym}${min}`); const link = gatewayLinks[selectedDepM]; if(link) { showToast("Redirecting..."); setTimeout(() => { window.location.href = `${link}?amount=${amt}&user=${phone}` }, 800); } };
         window.playGame = async function(name) { const link = gameLinks[name], phone = localStorage.getItem("userPhone"); if(link && "#" !== link) { showToast("🎮 " + name + " Loading..."); setTimeout(() => { window.location.href = link + "?user=" + phone }, 800); } else { showToast("Min Deposit 100 TK"); } };
         window.addEventListener("load", () => { const refParam = new URLSearchParams(window.location.search).get("ref"); if (refParam) { switchAuth("reg"); const refInput = document.getElementById("r-ref"); if(refInput) refInput.value = refParam; showToast("✅ Referral detected!"); } if(localStorage.getItem("isLoggedIn") === "true") enterDashboard(); });
@@ -508,4 +457,4 @@
         window.togglePassword = function(id, btn) { const s = document.getElementById(id); if("password" === s.type) { s.type = "text", btn.classList.replace("fa-eye", "fa-eye-slash") } else { s.type = "password", btn.classList.replace("fa-eye-slash", "fa-eye") } };
     </script>
 </body>
-  </html>
+</html>
