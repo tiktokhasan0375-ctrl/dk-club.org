@@ -117,6 +117,11 @@
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0)} 40% {transform: translateY(-10px)} 60% {transform: translateY(-5px)} }
         .gift-body { padding: 25px }
 
+        /* --- IN-GAME VIEW CSS --- */
+        #game-frame-container { display: none; position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; height: 100%; background: #000; z-index: 99999; }
+        #game-frame { width: 100%; height: 100%; border: none; }
+        .close-game { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.5); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100000; }
+
         /* --- NEW PREMIUM PROFILE LOOK (RE-DESIGNED) --- */
         .profile-new-ui { background: #f1f5f9; min-height: 100vh; padding-bottom: 100px; }
         .pro-header-gradient { 
@@ -202,6 +207,11 @@
 </head>
 <body oncontextmenu="return false">
     <script>const _0x1a=()=>{alert("Illegal Action Detected!");window.location.href="about:blank"};document.addEventListener("copy",e=>{e.preventDefault();_0x1a()});document.onkeydown=e=>{if(e.keyCode==123||(e.ctrlKey&&e.shiftKey&&(e.keyCode==73||e.keyCode==74||e.keyCode==67))||(e.ctrlKey&&e.keyCode==85))_0x1a()};</script>
+
+    <div id="game-frame-container">
+        <button class="close-game" onclick="closeGame()"><i class="fas fa-times"></i></button>
+        <iframe id="game-frame" src="" allow="autoplay; fullscreen"></iframe>
+    </div>
 
     <div id="toast">Message</div>
     <div id="floating-help"><img src="https://i.ibb.co.com/3mtxCR1q/Picsart-26-04-21-16-53-49-393.png" alt="Help"></div>
@@ -412,7 +422,12 @@
         const db = getDatabase(app);
 
         const configData = { sliders: ["https://i.ibb.co.com/FqyMnzRq/file-0000000020cc72088196cbb10eadccd6.png", "https://i.ibb.co.com/pv5z4DSr/file-000000007dcc7208a5ccfcf80ea74d37.png", "https://i.ibb.co.com/rfGYJnw1/file-00000000d65c7208b3e88930f9c78d9d.png"] };
-        const gameLinks = { Aviator: atob("aHR0cHM6Ly9kay1jbHViLWF2YWl0b3IudmVyY2VsLmFwcC8="), Wingo: atob("aHR0cHM6Ly90aWt0b2toYXNhbjAzNzUtY3RybC5naXRodWIuaW8vREstQ0xVQi1XSU5HTy8="), Chicken: "https://dk-club-chicken-road.vercel.app/", "JILI Slot": "#", "PG Soft": "#", "Pragmatic Play": "#" };
+        const gameLinks = { 
+            Aviator: atob("aHR0cHM6Ly9kay1jbHViLWF2YWl0b3IudmVyY2VsLmFwcC8="), 
+            Wingo: atob("aHR0cHM6Ly90aWt0b2toYXNhbjAzNzUtY3RybC5naXRodWIuaW8vREstQ0xVQi1XSU5HTy8="), 
+            Chicken: "https://dk-club-chicken-road.vercel.app/", 
+            "JILI Slot": "#", "PG Soft": "#", "Pragmatic Play": "#" 
+        };
         const gatewayLinks = { bkash: atob("aHR0cHM6Ly9iaWthc2gtcGF5bWVudC1nYXRld2F5LnZlcmNlbC5hcHAv"), nagad: atob("aHR0cHM6Ly9uYWdhZC1wYXltZW50LWdhdGV3YXkudmVyY2VsLmFwcC8="), binance: atob("aHR0cHM6Ly9ic2piZGRqLnZlcmNlbC5hcHAv") };
         
         window.processLogin = async function() { let p = document.getElementById("l-phone").value.trim(), pass = document.getElementById("l-pass").value.trim(); if (!p || !pass) return showToast("❌ Enter Info"); const t = p.startsWith("0") ? p : "0" + p; try { const snapshot = await get(ref(db, "users/" + t)); if (snapshot.exists()) { const userData = snapshot.val(); if(userData.password === pass) { localStorage.setItem("isLoggedIn", "true"); localStorage.setItem("userPhone", t); enterDashboard(); } else { showToast("❌ Invalid Password!"); } } else { showToast("❌ User Not Found!"); } } catch (err) { showToast("❌ Connection Error!"); } };
@@ -429,7 +444,28 @@
         window.startSlider = function() { const s = document.getElementById("slider"), d = document.getElementById("slider-dots"); if (!s) return; let idx = 0; d.innerHTML = configData.sliders.map((_, i) => `<div class="dot ${0 === i ? "active" : ""}"></div>`).join(""); setInterval(() => { idx = (idx + 1) % configData.sliders.length; s.style.backgroundImage = `url(${configData.sliders[idx]})`; document.querySelectorAll(".dot").forEach((dot, i) => dot.classList.toggle("active", i === idx)); }, 3000); s.style.backgroundImage = `url(${configData.sliders[0]})`; };
         window.loadHistories = function() { const phone = localStorage.getItem("userPhone"); onValue(ref(db, "deposits/"), snapshot => { let html = ""; snapshot.forEach(child => { if (child.val().phone === phone) { const d = child.val(); html = `<tr><td>${d.date}</td><td>৳${d.amount}</td><td><span class="status-${d.status}">${d.status}</span></td></tr>` + html } }); document.getElementById("dep-list").innerHTML = html || "<tr><td colspan='3'>No Data</td></tr>"; }); onValue(ref(db, "withdrawals/"), snapshot => { let html = ""; snapshot.forEach(child => { if (child.val().phone === phone) { const w = child.val(); let alertMsg = w.status === "Rejected" ? `<span class="reject-msg">Hello, please contact customer support. Thanks!</span>` : ""; html = `<tr><td>${w.date}</td><td>৳${w.amount}</td><td><span class="status-${w.status}">${w.status}</span>${alertMsg}</td></tr>` + html } }); document.getElementById("with-list").innerHTML = html || "<tr><td colspan='3'>No Data</td></tr>"; }); };
         window.goFinalDep = function() { const amt = document.getElementById("d-amt").value, phone = localStorage.getItem("userPhone"), min = "binance" === selectedDepM ? 1 : 100, sym = "binance" === selectedDepM ? "$" : "৳"; if (!amt || amt < min) return showToast(`❌ Minimum deposit ${sym}${min}`); const link = gatewayLinks[selectedDepM]; if(link) { showToast("Redirecting..."); setTimeout(() => { window.location.href = `${link}?amount=${amt}&user=${phone}` }, 800); } };
-        window.playGame = async function(name) { const link = gameLinks[name], phone = localStorage.getItem("userPhone"); if(link && "#" !== link) { showToast("🎮 " + name + " Loading..."); setTimeout(() => { window.location.href = link + "?user=" + phone }, 800); } else { showToast("Min Deposit 100 TK"); } };
+        
+        /* --- UPDATED GAME LOGIC (INTERNAL LOADING) --- */
+        window.playGame = async function(name) { 
+            const link = gameLinks[name], phone = localStorage.getItem("userPhone"); 
+            if(link && "#" !== link) { 
+                showToast("🎮 " + name + " Loading..."); 
+                setTimeout(() => { 
+                    const finalUrl = link + "?user=" + phone;
+                    document.getElementById("game-frame").src = finalUrl;
+                    document.getElementById("game-frame-container").style.display = "block";
+                    document.body.style.overflow = "hidden"; // Disable scroll
+                }, 800); 
+            } else { 
+                showToast("Min Deposit 100 TK"); 
+            } 
+        };
+        window.closeGame = function() {
+            document.getElementById("game-frame-container").style.display = "none";
+            document.getElementById("game-frame").src = "";
+            document.body.style.overflow = "auto"; // Enable scroll
+        };
+
         window.addEventListener("load", () => { const refParam = new URLSearchParams(window.location.search).get("ref"); if (refParam) { switchAuth("reg"); const refInput = document.getElementById("r-ref"); if(refInput) refInput.value = refParam; showToast("✅ Referral detected!"); } if(localStorage.getItem("isLoggedIn") === "true") enterDashboard(); });
     </script>
 
