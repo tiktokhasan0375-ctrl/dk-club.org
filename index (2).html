@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>DK CLUB | Official</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- Anti-Copy CSS Start --- */
+        * { -webkit-user-select: none !important; -moz-user-select: none !important; -ms-user-select: none !important; user-select: none !important; -webkit-touch-callout: none !important; }
+        input, textarea { -webkit-user-select: text !important; -moz-user-select: text !important; -ms-user-select: text !important; user-select: text !important; }
+        
+        :root { 
+            --primary: #10b981; 
+            --secondary: #059669; 
+            --accent: #34d399; 
+            --success: #10b981; 
+            --danger: #ef4444; 
+            --dark-bg: #f8fafc; 
+            --glass: rgba(0,0,0,0.05); 
+            --card-bg: #ffffff; 
+            --gold: linear-gradient(135deg, #10b981, #059669); 
+        }
+
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; font-family: Inter, sans-serif; margin: 0; padding: 0; user-select: none }
+        body { background-color: #f1f5f9; color: #333; min-height: 100vh; overflow-x: hidden }
+        .app-shell { background: #fff; box-shadow: 0 0 50px rgba(0,0,0,.05); display: flex; flex-direction: column; margin: 0 auto; max-width: 430px; min-height: 100vh; position: relative; width: 100% }
+        .auth-header { background: linear-gradient(135deg, var(--secondary), var(--primary)); border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; box-shadow: 0 10px 20px rgba(16, 185, 129, .2); color: #fff; padding: 40px 20px; text-align: center }
+        .brand-logo { font-size: 32px; font-weight: 800; letter-spacing: -1px }
+        .brand-logo span { color: #fff }
+        .tab-box { background: #fff; border: 1px solid #eee; border-radius: 20px; box-shadow: 0 10px 15px rgba(0,0,0,.1); display: flex; margin: -25px 30px 20px; padding: 6px }
+        .auth-tab { color: #94a3b8; cursor: pointer; flex: 1; font-weight: 700; padding: 12px; border-radius: 15px; text-align: center; transition: .3s }
+        .auth-tab.active { background: var(--primary); color: #fff }
+        .cat-scroll { background: #fff; display: flex; gap: 10px; overflow-x: auto; padding: 10px 15px; scrollbar-width: none }
+        .cat-scroll::-webkit-scrollbar { display: none }
+        .cat-btn { align-items: center; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; color: #64748b; display: flex; flex-direction: column; font-size: 12px; font-weight: 700; gap: 5px; min-width: 75px; padding: 10px 20px; transition: .3s; white-space: nowrap }
+        .cat-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; transform: scale(1.05) }
+        .cat-btn i { font-size: 18px }
+        .input-group { margin: 0 25px 18px }
+        .input-group label { color: #475569; display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px }
+        .input-wrapper { align-items: center; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 15px; display: flex; padding: 0 15px; transition: .3s }
+        .input-wrapper:focus-within { background: #fff; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(16, 185, 129, .1) }
+        .input-wrapper input { background: 0 0; border: none; color: #333; font-size: 15px; margin-left: 10px; outline: 0; padding: 14px 0; width: 100% }
+        .toggle-pass { color: #94a3b8; cursor: pointer; padding: 10px }
+        .btn-main { background: linear-gradient(to right, var(--primary), var(--secondary)); border: none; border-radius: 15px; box-shadow: 0 4px 12px rgba(16, 185, 129, .3); color: #fff; cursor: pointer; font-weight: 700; margin: 10px 25px; padding: 16px; transition: .2s; width: calc(100% - 50px) }
+        .btn-main:active { transform: translateY(2px) }
+        .top-bar { align-items: center; background: #fff; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; padding: 15px 20px; position: sticky; top: 0; z-index: 1000 }
+        .slider-container { background: #fff; padding: 15px }
+        .hero-banner { background-color: #f1f5f9; background-position: center; background-repeat: no-repeat; background-size: cover; border: 1px solid #eee; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,.08); height: 170px; overflow: hidden; position: relative; transition: background-image .6s ease-in-out; width: 100% }
+        .slider-dots { display: flex; gap: 6px; justify-content: center; margin-top: 10px }
+        .dot { background: #cbd5e1; border-radius: 50%; height: 8px; transition: .3s; width: 8px }
+        .dot.active { background: var(--primary); border-radius: 10px; width: 22px }
+        .notice-bar { align-items: center; background: #f0fdf4; border-left: 4px solid var(--primary); border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,.03); display: flex; gap: 10px; margin: 0 15px 15px; padding: 10px 15px }
+        
+        .game-grid { background: #fff; display: grid; gap: 10px; grid-template-columns: repeat(3, 1fr); padding: 0 15px 15px }
+        .game-btn { background: #fff; border: 1px solid #f1f5f9; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,.05); cursor: pointer; overflow: hidden; position: relative; transition: .3s; display: flex; flex-direction: column; height: 100% }
+        .game-btn:active { transform: scale(.95) }
+        .game-btn img { display: block; width: 100%; height: auto; aspect-ratio: 1/1; object-fit: contain; background: #f8fafc; }
+        .game-btn p { color: #334155; font-size: 10px; font-weight: 800; overflow: hidden; padding: 6px 2px; text-align: center; text-overflow: ellipsis; white-space: nowrap }
+
+        .game-tag { background: var(--primary); border-radius: 4px; color: #fff; font-size: 8px; font-weight: 900; padding: 2px 5px; position: absolute; right: 5px; text-transform: uppercase; top: 5px; z-index: 10; }
+        .deposit-type-grid { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; margin-bottom: 20px; padding: 0 25px }
+        .dep-type-card { align-items: center; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 15px; cursor: pointer; display: flex; gap: 12px; padding: 15px; transition: .3s }
+        .dep-type-card.active { background: #fff; border-color: var(--primary); box-shadow: 0 4px 12px rgba(16, 185, 129, .1) }
+        .dep-type-card i { color: #94a3b8; font-size: 20px }
+        .dep-type-card.active i { color: var(--primary) }
+        .dep-type-card span { color: #475569; font-size: 14px; font-weight: 700 }
+        .balance-card { background: linear-gradient(135deg, #1a1a1a, #2d3748); border-radius: 30px; box-shadow: 0 10px 20px rgba(0,0,0,.1); color: #fff; margin: 15px; overflow: hidden; padding: 30px 20px; position: relative }
+        .balance-card::after { background: rgba(255,255,255,.05); border-radius: 50%; content: ''; height: 150px; position: absolute; right: -20%; top: -50%; width: 150px }
+        .method-item { align-items: center; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 18px; box-shadow: 0 4px 6px rgba(0,0,0,.02); cursor: pointer; display: flex; flex: 1; height: 65px; justify-content: center; overflow: hidden; padding: 8px; position: relative; transition: .3s }
+        .method-item img { height: 100%; object-fit: contain; width: 100% }
+        .method-item.active { background: #fff; border-color: var(--primary); box-shadow: 0 0 15px rgba(16, 185, 129, .2) }
+        .method-item.active::after { color: var(--primary); content: '\f058'; font-family: 'Font Awesome 5 Free'; font-size: 14px; font-weight: 900; position: absolute; right: 2px; top: 2px }
+        .amt-btn-grid { display: grid; gap: 10px; grid-template-columns: repeat(4, 1fr); margin: 10px 25px }
+        .amt-btn { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; color: #475569; cursor: pointer; font-size: 12px; font-weight: 700; padding: 10px 5px; transition: .2s }
+        .amt-btn:active { background: var(--primary); border-color: var(--primary); color: #fff }
+        .nav-bar { align-items: center; backdrop-filter: blur(10px); background: rgba(255,255,255,.95); border-top: 1px solid #e2e8f0; bottom: 0; display: flex; height: 75px; left: 50%; max-width: 430px; padding-bottom: env(safe-area-inset-bottom); position: fixed; transform: translateX(-50%); width: 100%; z-index: 1000 }
+        .nav-item { color: #94a3b8; cursor: pointer; flex: 1; font-size: 10px; font-weight: 700; text-align: center; transition: .3s }
+        .nav-item.active { color: var(--primary) }
+        .nav-item i { display: block; font-size: 22px; margin-bottom: 5px }
+        .nav-center { align-items: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); border: 6px solid #fff; border-radius: 50%; box-shadow: 0 8px 15px rgba(16, 185, 129, .4); color: #fff; cursor: pointer; display: flex; font-size: 24px; height: 58px; justify-content: center; margin-top: -45px; width: 58px }
+        #toast { background: #334155; border-radius: 50px; box-shadow: 0 10px 25px rgba(0,0,0,.2); color: #fff; font-size: 14px; font-weight: 600; left: 50%; padding: 12px 25px; position: fixed; top: 20px; transform: translateX(-50%); transition: .3s; visibility: hidden; z-index: 10000 }
+        #toast.show { top: 40px; visibility: visible }
+        .page { animation: fadeIn .4s ease-out; background: #fff; display: none; padding-bottom: 100px }
+        .page.active { display: block }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: translateY(0) } }
+        #floating-help { bottom: 100px; cursor: move; height: 65px; position: fixed; right: 20px; touch-action: none; width: 65px; z-index: 9999 }
+        #floating-help img { border-radius: 50%; box-shadow: 0 10px 25px rgba(0,0,0,0.3); height: 100%; width: 100% }
+        #floating-help::before { animation: helpPulse 2s infinite; background: var(--primary); border-radius: 50%; content: ""; height: 100%; opacity: .6; position: absolute; transform: scale(1); width: 100%; z-index: -1 }
+        @keyframes helpPulse { 0% { opacity: .6; transform: scale(1) } 100% { opacity: 0; transform: scale(1.7) } }
+        .history-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; margin: 15px; overflow-x: auto }
+        table { border-collapse: collapse; min-width: 350px; width: 100% }
+        th { background: #f8fafc; color: #64748b; font-size: 12px; padding: 15px 10px; text-align: left }
+        td { border-top: 1px solid #f1f5f9; color: #334155; font-size: 13px; font-weight: 600; padding: 15px 10px }
+        .status-Pending { background: #fef3c7; color: #f59e0b; font-size: 11px; padding: 4px 8px; border-radius: 6px }
+        .status-Success { background: #d1fae5; color: #10b981; font-size: 11px; padding: 4px 8px; border-radius: 6px }
+        .status-Rejected { background: #fee2e2; color: #ef4444; font-size: 11px; padding: 4px 8px; border-radius: 6px }
+        .reject-msg { color: #ef4444; font-size: 10px; display: block; margin-top: 4px; font-weight: normal }
+        .hidden { display: none }
+        .turnover-info { background: #f0fdf4; border: 1px solid var(--primary); border-radius: 12px; color: #000; font-size: 12px; font-weight: 600; margin: 10px 25px; padding: 10px }
+        .card-selector { display: grid; gap: 10px; grid-template-columns: 1fr; padding: 15px 25px }
+        .wallet-card { align-items: center; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 15px; cursor: pointer; display: flex; justify-content: space-between; padding: 15px; transition: .3s }
+        .wallet-card.active { background: #fff; border-color: var(--primary); box-shadow: 0 4px 12px rgba(16, 185, 129, .1) }
+        .wallet-card i { color: #94a3b8 }
+        .wallet-card.active i { color: var(--primary) }
+        .add-card-btn { background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 15px; color: #64748b; cursor: pointer; font-weight: 700; padding: 15px; text-align: center }
+        .search-container { background: #fff; border: 1px solid #eee; border-radius: 20px; margin: 15px; padding: 15px }
+        .search-box { display: flex; gap: 10px }
+        .search-box input { border: 2px solid #e2e8f0; border-radius: 12px; flex: 1; outline: 0; padding: 12px; transition: .3s }
+        .search-box input:focus { border-color: var(--primary) }
+        .search-btn { background: var(--primary); border: none; border-radius: 12px; color: #fff; cursor: pointer; padding: 0 20px }
+        .modal-overlay { background: rgba(0,0,0,.7); backdrop-filter: blur(5px); display: none; height: 100%; left: 0; position: fixed; top: 0; width: 100%; z-index: 2000 }
+        .modal-content { background: #fff; border-radius: 30px; left: 50%; padding: 0; overflow: hidden; position: absolute; top: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 360px }
+        .gift-header { background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 30px 20px; text-align: center; color: #fff }
+        .gift-header i { font-size: 50px; margin-bottom: 10px; animation: bounce 2s infinite }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0)} 40% {transform: translateY(-10px)} 60% {transform: translateY(-5px)} }
+        .gift-body { padding: 25px }
+
+        /* --- NEW PREMIUM PROFILE LOOK (RE-DESIGNED) --- */
+        .profile-new-ui { background: #f1f5f9; min-height: 100vh; padding-bottom: 100px; }
+        .pro-header-gradient { 
+            background: linear-gradient(180deg, #10b981 0%, #064e3b 100%); 
+            padding: 40px 20px 80px; 
+            border-bottom-left-radius: 60px; 
+            border-bottom-right-radius: 60px;
+            position: relative;
+            text-align: center;
+        }
+        .pro-avatar-ring {
+            width: 105px; height: 105px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px; border-radius: 40px;
+            margin: 0 auto 15px;
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+        .pro-avatar-ring img {
+            width: 100%; height: 100%;
+            border-radius: 32px;
+            object-fit: cover;
+            border: 3px solid #fff;
+        }
+        .pro-status-badge {
+            background: #eab308; color: #000;
+            padding: 4px 12px; border-radius: 50px;
+            font-size: 10px; font-weight: 900;
+            position: absolute; bottom: -8px; left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .pro-info-card {
+            background: #fff;
+            margin: -50px 20px 20px;
+            padding: 25px;
+            border-radius: 35px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
+        }
+        .pro-bal-label { color: #64748b; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px; }
+        .pro-bal-amount { font-size: 34px; font-weight: 900; color: #1e293b; margin-bottom: 20px; display: block; }
+        .pro-btn-group { display: flex; gap: 10px; margin-bottom: 10px; }
+        .pro-btn { 
+            flex: 1; padding: 15px; border-radius: 20px; border: none; 
+            font-weight: 800; font-size: 14px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: 0.3s;
+        }
+        .pro-btn-main { background: var(--primary); color: #fff; box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3); }
+        .pro-btn-alt { background: #f1f5f9; color: #475569; }
+        .pro-grid-menu {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;
+            padding: 0 20px;
+        }
+        .pro-menu-card {
+            background: #fff; padding: 20px; border-radius: 25px;
+            display: flex; align-items: center; gap: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            border: 1px solid #f1f5f9;
+        }
+        .pro-menu-card i {
+            width: 45px; height: 45px; border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+        }
+        .pro-menu-card span { font-size: 13px; font-weight: 700; color: #334155; }
+        .pro-logout-btn {
+            margin: 30px 20px; background: #fff; color: #ef4444;
+            padding: 18px; border-radius: 22px; text-align: center;
+            font-weight: 800; border: 1px solid #fee2e2;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        
+        .vip-item-row { display: flex; align-items: center; background: #fff; margin: 10px 15px; padding: 15px; border-radius: 18px; border: 1px solid #f1f5f9; box-shadow: 0 4px 6px rgba(0,0,0,0.02) }
+        .vip-level-box { width: 50px; height: 50px; background: var(--gold); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 18px; margin-right: 15px }
+        .vip-info-text { flex: 1 }
+        .vip-info-text h4 { font-size: 14px; color: #333 }
+        .vip-info-text p { font-size: 11px; color: #64748b }
+        .vip-salary-tag { background: #f0fdf4; color: var(--secondary); padding: 4px 10px; border-radius: 8px; font-weight: 800; font-size: 12px; border: 1px solid var(--primary) }
+    </style>
+</head>
+<body oncontextmenu="return false">
+    <script>const _0x1a=()=>{alert("Illegal Action Detected!");window.location.href="about:blank"};document.addEventListener("copy",e=>{e.preventDefault();_0x1a()});document.onkeydown=e=>{if(e.keyCode==123||(e.ctrlKey&&e.shiftKey&&(e.keyCode==73||e.keyCode==74||e.keyCode==67))||(e.ctrlKey&&e.keyCode==85))_0x1a()};</script>
+
+    <div id="toast">Message</div>
+    <div id="floating-help"><img src="https://i.ibb.co.com/3mtxCR1q/Picsart-26-04-21-16-53-49-393.png" alt="Help"></div>
+    <div id="gift-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="gift-header"><i class="fas fa-gift"></i><h2 style="font-weight: 800; letter-spacing: 1px;">GIFT CODE</h2><p style="font-size: 12px; opacity: 0.9;">Enter your reward code below</p></div>
+            <div class="gift-body">
+                <div class="input-group" style="margin:0 0 20px"><label>Redemption Code</label>
+                    <div class="input-wrapper" style="border-radius: 12px;"><i class="fas fa-ticket-alt" style="color:var(--primary)"></i><input type="text" id="gift-input" placeholder="Ex: DKCLUB-XXXX"></div>
+                </div>
+                <button class="btn-main" style="margin:0; width:100%; height: 50px; border-radius: 12px; font-size: 16px;" onclick="redeemGift()">Receive Reward</button>
+                <p onclick="closeGift()" style="text-align:center; margin-top:15px; color:#64748b; font-size:13px; font-weight:600; cursor:pointer">Cancel</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="auth-container">
+        <div class="app-shell">
+            <div class="auth-header"><div class="brand-logo">DK CLUB</div><p style="font-size:13px;margin-top:8px;opacity:.9;font-weight:300">Win Big with the Most Trusted Platform</p></div>
+            <div class="tab-box">
+                <div class="auth-tab active" id="tab-login" onclick="switchAuth('login')">Login</div>
+                <div class="auth-tab" id="tab-reg" onclick="switchAuth('reg')">Register</div>
+            </div>
+            <div id="login-view">
+                <div class="input-group"><label>Account Number</label><div class="input-wrapper"><span style="font-weight:700;color:var(--primary)">+880</span><input type="number" id="l-phone" placeholder="1XXX-XXXXXX"></div></div>
+                <div class="input-group"><label>Password</label><div class="input-wrapper"><i class="fas fa-unlock-alt" style="color:var(--primary)"></i><input type="password" id="l-pass" placeholder="••••••••"><i class="fas fa-eye toggle-pass" onclick="togglePassword('l-pass',this)"></i></div></div>
+                <button class="btn-main" id="loginBtn" onclick="processLogin()">Login to Account</button>
+            </div>
+            <div id="reg-view" class="hidden">
+                <div class="input-group"><label>Phone Number</label><div class="input-wrapper"><span style="font-weight:700;color:var(--primary)">+880</span><input type="number" id="r-phone" placeholder="1XXX-XXXXXX"></div></div>
+                <div class="input-group"><label>New Password</label><div class="input-wrapper"><i class="fas fa-lock" style="color:var(--primary)"></i><input type="password" id="r-pass" placeholder="Min 6 characters"><i class="fas fa-eye toggle-pass" onclick="togglePassword('r-pass',this)"></i></div></div>
+                <div class="input-group"><label>Confirm Password</label><div class="input-wrapper"><i class="fas fa-shield-alt" style="color:var(--primary)"></i><input type="password" id="r-cpass" placeholder="Repeat password"><i class="fas fa-eye toggle-pass" onclick="togglePassword('r-cpass',this)"></i></div></div>
+                <div class="input-group"><label>Invite Code</label><div class="input-wrapper"><i class="fas fa-gift" style="color:var(--primary)"></i><input type="text" id="r-ref" placeholder="Automatic"></div></div>
+                <button class="btn-main" id="regBtn" onclick="processRegister()">Create Account</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-dashboard" class="hidden">
+        <div class="app-shell">
+            <div class="top-bar">
+                <div class="brand-logo" style="color:var(--primary);font-size:22px">DK CLUB</div>
+                <div style="display:flex;gap:18px;align-items:center"><i class="fas fa-bell" style="color:#64748b;font-size:18px"></i><i class="fas fa-headset" onclick="openHelp()" style="color:var(--primary);font-size:20px;cursor:pointer"></i></div>
+            </div>
+
+            <div id="home-page" class="page active">
+                <div class="slider-container"><div class="hero-banner" id="slider"></div><div class="slider-dots" id="slider-dots"></div></div>
+                <div class="notice-bar"><i class="fas fa-volume-up" style="color:var(--primary)"></i><marquee style="font-size:12px;font-weight:700;color:#475569">Welcome to DK CLUB! Deposit now and get 100% bonus on your first deposit. Withdrawals within 30 mins. 🔥</marquee></div>
+                <div class="cat-scroll">
+                    <div class="cat-btn active"><i class="fas fa-th-large"></i>All</div>
+                    <div class="cat-btn"><i class="fas fa-gamepad"></i>Slots</div>
+                    <div class="cat-btn"><i class="fas fa-users"></i>Live</div>
+                    <div class="cat-btn"><i class="fas fa-fish"></i>Fishing</div>
+                    <div class="cat-btn"><i class="fas fa-basketball-ball"></i>Sports</div>
+                    <div class="cat-btn"><i class="fas fa-dice"></i>Dice</div>
+                </div>
+                <div class="game-grid">
+                    <div class="game-btn" onclick="playGame('Aviator')"><span class="game-tag">Hot</span><img src="https://i.ibb.co.com/60P8yQg8/800-20241205172339933.png"><p>Aviator</p></div>
+                    <div class="game-btn" onclick="playGame('Wingo')"><span class="game-tag">Hot</span><img src="https://i.ibb.co.com/0RmdVFj7/Win-Go-30-S-20250804212905940.jpg"><p>WinGo</p></div>
+                    <div class="game-btn" onclick="playGame('JILI Slot')"><span class="game-tag">New</span><img src="https://files.catbox.moe/tl6rjy.png"><p>Super Ace</p></div>
+                    <div class="game-btn" onclick="playGame('PG Soft')"><img src="https://files.catbox.moe/5z5kd1.png"><p>Crazy Time</p></div>
+                    <div class="game-btn" onclick="playGame('Pragmatic Play')"><span class="game-tag">Popular</span><img src="https://files.catbox.moe/11vvpx.png"><p>Gates of Olympus</p></div>
+                    <div class="game-btn" onclick="playGame('Chicken')"><img src="https://i.ibb.co.com/cKZww3Ky/121.png"><p>Chicken</p></div>
+                    <div class="game-btn" onclick="playGame('Boom')"><img src="https://ossimg.crhhh.com/bdtgame/gamelogo/TB_Chess/811.png"><p>Boom</p></div>
+                    <div class="game-btn" onclick="playGame('Jackpot')"><img src="https://files.catbox.moe/gzj1wf.jpg"><p>Jackpot</p></div>
+                    <div class="game-btn" onclick="playGame('3 CARDS')"><img src="https://files.catbox.moe/5qw81v.jpg"><p>3 CARDS</p></div>
+                </div>
+            </div>
+
+            <div id="vip-page" class="page">
+                <div style="padding:15px"><div class="vip-card-header" style="background: #111827; padding: 30px 20px; color: #fff; border-radius: 20px 20px 0 0; position: relative; overflow: hidden"><i class="fas fa-crown" style="color: var(--primary); font-size: 40px; margin-bottom: 10px"></i><h2 style="font-weight: 800;">VIP BENEFITS</h2><p style="opacity: 0.8; font-size: 13px;">Exclusive Daily Salary for Active Players</p></div></div>
+                <div id="vip-list-container">
+                    <div class="vip-item-row"><div class="vip-level-box">1</div><div class="vip-info-text"><h4>VIP Level 1</h4><p>Deposit: ৳500+</p></div><div class="vip-salary-tag">৳100/Day</div></div>
+                    <div class="vip-item-row"><div class="vip-level-box">2</div><div class="vip-info-text"><h4>VIP Level 2</h4><p>Deposit: ৳2,000+</p></div><div class="vip-salary-tag">৳300/Day</div></div>
+                    <div class="vip-item-row"><div class="vip-level-box">3</div><div class="vip-info-text"><h4>VIP Level 3</h4><p>Deposit: ৳10,000+</p></div><div class="vip-salary-tag">৳500/Day</div></div>
+                    <div class="vip-item-row"><div class="vip-level-box">4</div><div class="vip-info-text"><h4>VIP Level 4</h4><p>Deposit: ৳50,000+</p></div><div class="vip-salary-tag">৳2,500/Day</div></div>
+                    <div class="vip-item-row"><div class="vip-level-box">5</div><div class="vip-info-text"><h4>VIP Level 5</h4><p>Deposit: ৳2,00,000+</p></div><div class="vip-salary-tag">৳10,000/Day</div></div>
+                </div>
+            </div>
+
+            <div id="agency-page" class="page">
+                <div class="balance-card" style="text-align:center"><p style="opacity:.7;font-size:14px">Total Commission</p><h1 id="total-comm-display" style="font-size:38px;margin:10px 0">৳ 0.00</h1><div style="display:inline-block;background:rgba(255,255,255,.1);padding:5px 15px;border-radius:50px;font-size:12px">5% Direct Commission</div></div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:0 15px;margin-top:-10px">
+                    <div style="background:#fff;padding:15px;border-radius:20px;text-align:center;border:1px solid #eee;cursor:pointer" onclick="nav('downline')"><b id="team-count-display" style="font-size:20px;color:var(--primary);display:block">0</b><span style="font-size:12px;color:#64748b">Total Team (Check)</span></div>
+                    <div style="background:#fff;padding:15px;border-radius:20px;text-align:center;border:1px solid #eee"><b id="today-earn-display" style="font-size:20px;color:var(--success);display:block">৳0</b><span style="font-size:12px;color:#64748b">Today Earn</span></div>
+                </div>
+                <div style="background:#fff;margin:15px;padding:25px;border-radius:25px;border:1px solid #eee">
+                    <h4 style="margin-bottom:5px;color:#333">Invitation Code</h4>
+                    <div style="background:#f8fafc;padding:15px;border-radius:15px;font-size:20px;font-weight:800;border:1px dashed #cbd5e1;display:flex;justify-content:space-between;align-items:center"><span id="ref-code-display" style="color:var(--primary)">...</span><button onclick="copyRefCode()" style="background:var(--primary);color:#fff;border:none;padding:5px 12px;border-radius:8px;font-size:12px">Copy</button></div>
+                    <h4 style="margin-top:20px;color:#333">Invitation Link</h4>
+                    <div id="ref-link-display" style="background:#f8fafc;padding:15px;border-radius:15px;font-size:12px;border:1px solid #e2e8f0;word-break:break-all;margin-top:10px;color:#64748b">Generating...</div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px"><button class="btn-main" style="width:100%;margin:0" onclick="copyRefLink()">Copy Link</button><button class="btn-main" id="telegram-share-btn" style="width:100%;margin:0;background:#0088cc"><i class="fab fa-telegram-plane"></i> Telegram</button></div>
+                </div>
+            </div>
+
+            <div id="downline-page" class="page">
+                <div style="padding:20px 25px"><h3>My Downline</h3></div>
+                <div class="search-container"><div class="search-box"><input type="number" id="downline-search-uid" placeholder="Search by UID"><button class="search-btn" onclick="searchDownline()"><i class="fas fa-search"></i></button></div></div>
+                <div class="history-card"><table><thead><tr><th>UID</th><th>Phone</th><th>Balance</th><th>Deposit</th></tr></thead><tbody id="downline-list"></tbody></table></div>
+            </div>
+
+            <div id="deposit-page" class="page">
+                <div style="padding:20px 25px;display:flex;justify-content:space-between;align-items:center"><h3>Deposit Money</h3><div style="background:#f1f5f9;padding:5px 12px;border-radius:10px;font-size:12px;font-weight:700;color:var(--primary)">Balance: <span id="dep-top-bal">৳ 0.00</span></div></div>
+                <div class="deposit-type-grid"><div class="dep-type-card active" onclick="nav('deposit')"><i class="fas fa-wallet"></i><span>Local Wallet</span></div><div class="dep-type-card" onclick="setDepM('binance')"><i class="fas fa-coins"></i><span>Crypto USDT</span></div></div>
+                <div style="display:flex;gap:12px;padding:0 25px;margin-bottom:25px"><div class="method-item active" id="d-bkash" onclick="setDepM('bkash')"><img src="https://i.ibb.co.com/cKwG9K3f/images.png"></div><div class="method-item" id="d-nagad" onclick="setDepM('nagad')"><img src="https://i.ibb.co.com/wFpxNjxX/images-4.jpg"></div><div class="method-item" id="d-binance" onclick="setDepM('binance')"><img src="https://files.catbox.moe/adzcx4.png"></div></div>
+                <div class="input-group"><label id="dep-limit-label">Amount (৳100 - ৳25,000)</label><div class="input-wrapper"><span id="dep-symbol" style="font-weight:800;color:var(--primary);font-size:18px">৳</span><input type="number" id="d-amt" placeholder="0.00" style="font-weight:800;font-size:20px;color:var(--primary)"></div></div>
+                <div class="amt-btn-grid" id="amt-presets"><button class="amt-btn" onclick="setAmt(100)">100</button><button class="amt-btn" onclick="setAmt(300)">300</button><button class="amt-btn" onclick="setAmt(1000)">1000</button><button class="amt-btn" onclick="setAmt(5000)">5000</button><button class="amt-btn" onclick="setAmt(10000)">10000</button><button class="amt-btn" onclick="setAmt(15000)">15000</button><button class="amt-btn" onclick="setAmt(20000)">20000</button><button class="amt-btn" onclick="setAmt(25000)">25000</button></div>
+                <button class="btn-main" style="margin-top:10px;" onclick="goFinalDep()">Deposit Now</button>
+            </div>
+
+            <div id="withdraw-page" class="page">
+                <div style="padding:20px 25px"><h3>Withdraw Funds</h3></div><div id="turnover-box" class="turnover-info">Required Turnover: ৳<span id="user-turnover">0</span></div><div class="card-selector" id="withdraw-cards"></div>
+                <div class="input-group" style="margin-top:10px"><label id="with-limit-label">Amount (Min ৳100)</label><div class="input-wrapper"><span id="with-symbol" style="font-weight:700">৳</span><input type="number" id="w-amt" placeholder="100.00"></div></div>
+                <div class="input-group"><label>Account Password</label><div class="input-wrapper"><i class="fas fa-lock" style="color:var(--primary)"></i><input type="password" id="w-pass" placeholder="Enter Login Password"><i class="fas fa-eye toggle-pass" onclick="togglePassword('w-pass',this)"></i></div></div><button class="btn-main" onclick="submitWith()">Withdraw Now</button>
+            </div>
+
+            <div id="add-card-page" class="page">
+                <div style="padding:20px 25px"><h3>Add Wallet/Card</h3></div>
+                <div style="display:flex;gap:12px;padding:0 25px;margin-bottom:25px"><div class="method-item active" id="ac-bkash" onclick="setAddM('bkash')"><img src="https://i.ibb.co.com/cKwG9K3f/images.png"></div><div class="method-item" id="ac-nagad" onclick="setAddM('nagad')"><img src="https://i.ibb.co.com/wFpxNjxX/images-4.jpg"></div></div>
+                <div class="input-group"><label>Wallet Number</label><div class="input-wrapper"><i class="fas fa-mobile-alt" style="color:var(--primary)"></i><input type="number" id="ac-num" placeholder="01XXX-XXXXXX"></div></div>
+                <button class="btn-main" onclick="saveCard()">Save Wallet Card</button>
+            </div>
+
+            <div id="account-page" class="page">
+                <div class="profile-new-ui">
+                    <div class="pro-header-gradient">
+                        <div class="pro-avatar-ring">
+                            <img src="https://i.ibb.co.com/TDT5F36x/5-ab77b716.webp" alt="User">
+                            <div class="pro-status-badge">PREMIUM PLAYER</div>
+                        </div>
+                        <div style="color: #fff; font-weight: 800; font-size: 18px; letter-spacing: 0.5px;">ACCOUNT CENTER</div>
+                        <div style="margin-top: 10px; background: rgba(255,255,255,0.15); display: inline-flex; align-items: center; padding: 6px 15px; border-radius: 50px; font-size: 12px; color: #fff; border: 1px solid rgba(255,255,255,0.3);">
+                            <span style="opacity: 0.7;">UID: </span> &nbsp; <span id="uid-gen" style="font-weight: 800;">000000</span>
+                            <i class="fas fa-copy" onclick="copyUID()" style="margin-left: 10px; opacity: 0.8;"></i>
+                        </div>
+                    </div>
+
+                    <div class="pro-info-card">
+                        <span class="pro-bal-label">Current Balance</span>
+                        <span class="pro-bal-amount" id="user-bal">৳ 0.00</span>
+                        <div class="pro-btn-group">
+                            <button class="pro-btn pro-btn-main" onclick="nav('deposit')"><i class="fas fa-wallet"></i> DEPOSIT</button>
+                            <button class="pro-btn pro-btn-alt" onclick="nav('withdraw')"><i class="fas fa-arrow-alt-circle-down"></i> WITHDRAW</button>
+                        </div>
+                        <button class="pro-btn pro-btn-alt" style="width: 100%; border: 1px solid #e2e8f0;" onclick="refreshBalance()">
+                            <i class="fas fa-sync-alt"></i> REFRESH DATA
+                        </button>
+                    </div>
+
+                    <div class="pro-grid-menu">
+                        <div class="pro-menu-card" onclick="openGift()">
+                            <i class="fas fa-gift" style="background: #f0fdf4; color: #10b981;"></i>
+                            <span>Gift Code</span>
+                        </div>
+                        <div class="pro-menu-card" onclick="nav('vip')">
+                            <i class="fas fa-gem" style="background: #fff1f2; color: #f43f5e;"></i>
+                            <span>VIP Club</span>
+                        </div>
+                        <div class="pro-menu-card" onclick="nav('dep-hist')">
+                            <i class="fas fa-list-ul" style="background: #fefce8; color: #eab308;"></i>
+                            <span>Deposit History</span>
+                        </div>
+                        <div class="pro-menu-card" onclick="nav('with-hist')">
+                            <i class="fas fa-history" style="background: #eff6ff; color: #3b82f6;"></i>
+                            <span>Withdraw History</span>
+                        </div>
+                        <div class="pro-menu-card" onclick="openHelp()" style="grid-column: span 2;">
+                            <i class="fas fa-headset" style="background: #f5f3ff; color: #8b5cf6;"></i>
+                            <span>Official Customer Service (Support)</span>
+                        </div>
+                    </div>
+
+                    <div class="pro-logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> LOGOUT ACCOUNT
+                    </div>
+                </div>
+            </div>
+
+            <div id="dep-hist-page" class="page"><div style="padding:20px 25px"><h3>Deposit History</h3></div><div class="history-card"><table><thead><tr><th>Date</th><th>Amount</th><th>Status</th></tr></thead><tbody id="dep-list"></tbody></table></div></div>
+            <div id="with-hist-page" class="page"><div style="padding:20px 25px"><h3>Withdraw History</h3></div><div class="history-card"><table><thead><tr><th>Date</th><th>Amount</th><th>Status</th></tr></thead><tbody id="with-list"></tbody></table></div></div>
+
+            <div class="nav-bar">
+                <div class="nav-item active" id="n-home" onclick="nav('home')"><i class="fas fa-home"></i>Home</div>
+                <div class="nav-item" id="n-deposit" onclick="nav('deposit')"><i class="fas fa-wallet"></i>Deposit</div>
+                <div class="nav-center" onclick="nav('agency')"><i class="fas fa-users"></i></div>
+                <div class="nav-item" id="n-withdraw" onclick="nav('withdraw')"><i class="fas fa-money-bill"></i>Withdraw</div>
+                <div class="nav-item" id="n-account" onclick="nav('account')"><i class="fas fa-user-circle"></i>Profile</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getDatabase, ref, set, push, onValue, get, update, increment, remove } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyAsZlkP9qo1uXu7i55e6bV9Xg7pHedlOHk",
+            authDomain: "dk-club-1d649.firebaseapp.com",
+            databaseURL: "https://dk-club-1d649-default-rtdb.firebaseio.com",
+            projectId: "dk-club-1d649",
+            storageBucket: "dk-club-1d649.firebasestorage.app",
+            messagingSenderId: "1097896403968",
+            appId: "1:1097896403968:web:ac1b8c071ee225cab3a4e5",
+            measurementId: "G-RT3FLNP8FG"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        const configData = { sliders: ["https://i.ibb.co.com/FqyMnzRq/file-0000000020cc72088196cbb10eadccd6.png", "https://i.ibb.co.com/pv5z4DSr/file-000000007dcc7208a5ccfcf80ea74d37.png", "https://i.ibb.co.com/rfGYJnw1/file-00000000d65c7208b3e88930f9c78d9d.png"] };
+        const gameLinks = { Aviator: atob("aHR0cHM6Ly9kay1jbHViLWF2YWl0b3IudmVyY2VsLmFwcC8="), Wingo: atob("aHR0cHM6Ly90aWt0b2toYXNhbjAzNzUtY3RybC5naXRodWIuaW8vREstQ0xVQi1XSU5HTy8="), Chicken: "https://dk-club-chicken-road.vercel.app/", "JILI Slot": "#", "PG Soft": "#", "Pragmatic Play": "#" };
+        const gatewayLinks = { bkash: atob("aHR0cHM6Ly9iaWthc2gtcGF5bWVudC1nYXRld2F5LnZlcmNlbC5hcHAv"), nagad: atob("aHR0cHM6Ly9uYWdhZC1wYXltZW50LWdhdGV3YXkudmVyY2VsLmFwcC8="), binance: atob("aHR0cHM6Ly9ic2piZGRqLnZlcmNlbC5hcHAv") };
+        
+        window.processLogin = async function() { let p = document.getElementById("l-phone").value.trim(), pass = document.getElementById("l-pass").value.trim(); if (!p || !pass) return showToast("❌ Enter Info"); const t = p.startsWith("0") ? p : "0" + p; try { const snapshot = await get(ref(db, "users/" + t)); if (snapshot.exists()) { const userData = snapshot.val(); if(userData.password === pass) { localStorage.setItem("isLoggedIn", "true"); localStorage.setItem("userPhone", t); enterDashboard(); } else { showToast("❌ Invalid Password!"); } } else { showToast("❌ User Not Found!"); } } catch (err) { showToast("❌ Connection Error!"); } };
+        window.processRegister = async function() { const p = document.getElementById("r-phone").value.trim(), pass = document.getElementById("r-pass").value.trim(), cpass = document.getElementById("r-cpass").value.trim(), refCode = document.getElementById("r-ref").value.trim(); if (p.length < 10) return showToast("❌ Enter valid number"); if (pass.length < 6) return showToast("❌ Password min 6 chars"); if (pass !== cpass) return showToast("❌ Password mismatch"); const t = p.startsWith("0") ? p : "0" + p; try { const checkUser = await get(ref(db, "users/" + t)); if (checkUser.exists()) return showToast("❌ Number already exists"); const uid = Math.floor(1e5 + 9e5 * Math.random()), newUser = { phone: t, password: pass, balance: 0, turnover: 0, uid: uid, referredBy: refCode || "", totalCommission: 0, todayEarn: 0, totalTeam: 0, totalDeposit: 0, lastLogin: Date.now() }; await set(ref(db, "users/" + t), newUser); if(refCode) { const allUsers = await get(ref(db, "users")); allUsers.forEach(child => { if(child.val().uid == refCode) { update(ref(db, "users/" + child.key), { totalTeam: increment(1) }); } }); } showToast("✅ Success! Please Login"); switchAuth("login"); } catch (err) { showToast("❌ Registration Failed!"); } };
+        window.enterDashboard = function() { document.getElementById("auth-container").classList.add("hidden"); document.getElementById("main-dashboard").classList.remove("hidden"); const phone = localStorage.getItem("userPhone"); if (!phone) return logout(); onValue(ref(db, "users/" + phone), snapshot => { const data = snapshot.val(); if (data) { const bal = "৳ " + parseFloat(data.balance).toFixed(2); document.getElementById("user-bal").innerText = bal; document.getElementById("dep-top-bal").innerText = bal; document.getElementById("uid-gen").innerText = data.uid; document.getElementById("user-turnover").innerText = data.turnover || 0; const link = window.location.origin + window.location.pathname + "?ref=" + data.uid; document.getElementById("ref-link-display").innerText = link; document.getElementById("ref-code-display").innerText = data.uid; document.getElementById("total-comm-display").innerText = "৳ " + (data.totalCommission || 0).toFixed(2); document.getElementById("today-earn-display").innerText = "৳" + (data.todayEarn || 0).toFixed(2); document.getElementById("team-count-display").innerText = data.totalTeam || 0; document.getElementById("telegram-share-btn").onclick = function() { const msg = encodeURIComponent(`🔥 Join DK CLUB and win big! Use my invite link: ${link}`); window.open(`https://t.me/share/url?url=${link}&text=${msg}`, "_blank"); }; loadDownline(data.uid); } else { logout(); } }); loadHistories(); renderCards(); startSlider(); processCommissions(); };
+        async function processCommissions() { onValue(ref(db, "deposits"), async (snapshot) => { if (!snapshot.exists()) return; snapshot.forEach(async (child) => { const dep = child.val(); if (dep.status === "Success" && !dep.commProcessed) { const userSnap = await get(ref(db, "users/" + dep.phone)); if (userSnap.exists()) { const userData = userSnap.val(), inviterUid = userData.referredBy; if (inviterUid) { const commission = dep.amount * 0.05, usersSnap = await get(ref(db, "users")); usersSnap.forEach(uChild => { if (uChild.val().uid == inviterUid) { update(ref(db, "users/" + uChild.key), { balance: increment(commission), totalCommission: increment(commission), todayEarn: increment(commission) }); } }); } update(ref(db, "users/" + dep.phone), { totalDeposit: increment(dep.amount) }); } update(ref(db, "deposits/" + child.key), { commProcessed: true }); } }); }); }
+        window.loadDownline = async function(myUid) { onValue(ref(db, "users"), (snapshot) => { const list = document.getElementById("downline-list"); let html = ""; if(snapshot.exists()) { snapshot.forEach(child => { const u = child.val(); if(u.referredBy == myUid) { html += `<tr><td>${u.uid}</td><td>${u.phone.substring(0, 3)}***${u.phone.substring(8)}</td><td>৳${(u.balance || 0).toFixed(1)}</td><td>৳${u.totalDeposit || 0}</td></tr>`; } }); } list.innerHTML = html || "<tr><td colspan='4'>No Downline Found</td></tr>"; }); };
+        window.searchDownline = async function() { const sUid = document.getElementById("downline-search-uid").value.trim(), myUid = document.getElementById("uid-gen").innerText; if (!sUid) return showToast("❌ Enter UID"); try { const snapshot = await get(ref(db, "users")); let html = "", found = false; snapshot.forEach(child => { const u = child.val(); if (u.uid == sUid && u.referredBy == myUid) { html = `<tr><td>${u.uid}</td><td>${u.phone.substring(0, 3)}***${u.phone.substring(8)}</td><td>৳${u.balance.toFixed(1)}</td><td>৳${u.totalDeposit || 0}</td></tr>`; found = true; } }); if(found) { document.getElementById("downline-list").innerHTML = html; showToast("✅ User Found"); } else { showToast("❌ This UID is not in your downline!"); } } catch (err) { showToast("❌ Search Failed"); } };
+        window.redeemGift = async function() { const code = document.getElementById("gift-input").value.trim(), phone = localStorage.getItem("userPhone"); if (!code) return showToast("❌ Enter Code"); try { const giftRef = ref(db, "giftcodes/" + code), snapshot = await get(giftRef); if (snapshot.exists()) { const giftData = snapshot.val(), amt = parseFloat(giftData.amount); await update(ref(db, "users/" + phone), { balance: increment(amt) }); await remove(giftRef); showToast(`✅ Congrats! ৳${amt} Redeemed`); closeGift(); } else { showToast("❌ Invalid or used code!"); } } catch (err) { showToast("❌ System Error!"); } };
+        window.submitWith = async function() { const amt = parseFloat(document.getElementById("w-amt").value), pass = document.getElementById("w-pass").value.trim(), phone = localStorage.getItem("userPhone"); if (!activeCard) return showToast("❌ Select a card"); if (!amt || amt < 100) return showToast("❌ Minimum withdraw 100 TK"); try { const snapshot = await get(ref(db, "users/" + phone)), user = snapshot.val(); if (user.password !== pass) return showToast("❌ Invalid Password!"); if ((user.turnover || 0) > 0) return showToast("❌ Turnover remaining!"); if (user.balance < amt) return showToast("❌ Insufficient balance"); await update(ref(db, "users/" + phone), { balance: user.balance - amt }); await push(ref(db, "withdrawals/"), { phone: phone, amount: amt, wallet: activeCard.num, method: activeCard.method, status: "Pending", date: (new Date).toLocaleString() }); showToast("✅ Request Successful"); nav("account"); } catch (err) { showToast("❌ Withdrawal Failed"); } };
+        window.refreshBalance = async function() { const phone = localStorage.getItem("userPhone"); if (phone) { try { const snapshot = await get(ref(db, "users/" + phone)); if (snapshot.exists()) { const b = parseFloat(snapshot.val().balance).toFixed(2); document.getElementById("user-bal").innerText = "৳ " + b; document.getElementById("dep-top-bal").innerText = "৳ " + b; showToast("🔄 Balance Updated"); } } catch (err) { showToast("❌ Refresh Failed"); } } };
+        window.renderCards = async function() { const phone = localStorage.getItem("userPhone"), snapshot = await get(ref(db, `users/${phone}/cards`)), container = document.getElementById("withdraw-cards"); let html = "", cardCount = 0; if(snapshot.exists()) { snapshot.forEach(child => { cardCount++; const c = child.val(); html += `<div class="wallet-card" onclick="selectCard('${child.key}','${c.method}','${c.num}')" id="card-${child.key}"><div><small>${c.method}</small><div style="font-weight:700">${c.num}</div></div><i class="fas fa-check-circle"></i></div>`; }); } html += `<div class="add-card-btn" onclick="nav('add-card')"><i class="fas fa-plus"></i> Add New Card</div>`; container.innerHTML = html; window.userCardCount = cardCount; };
+        window.saveCard = async function() { const num = document.getElementById("ac-num").value.trim(), phone = localStorage.getItem("userPhone"); if (!num) return showToast("❌ Enter Info"); if (window.userCardCount >= 2) return showToast("❌ Max 2 cards allowed!"); await push(ref(db, `users/${phone}/cards`), { method: selectedAddM, num: num }); showToast("✅ Saved"); nav("withdraw"); renderCards(); };
+        window.startSlider = function() { const s = document.getElementById("slider"), d = document.getElementById("slider-dots"); if (!s) return; let idx = 0; d.innerHTML = configData.sliders.map((_, i) => `<div class="dot ${0 === i ? "active" : ""}"></div>`).join(""); setInterval(() => { idx = (idx + 1) % configData.sliders.length; s.style.backgroundImage = `url(${configData.sliders[idx]})`; document.querySelectorAll(".dot").forEach((dot, i) => dot.classList.toggle("active", i === idx)); }, 3000); s.style.backgroundImage = `url(${configData.sliders[0]})`; };
+        window.loadHistories = function() { const phone = localStorage.getItem("userPhone"); onValue(ref(db, "deposits/"), snapshot => { let html = ""; snapshot.forEach(child => { if (child.val().phone === phone) { const d = child.val(); html = `<tr><td>${d.date}</td><td>৳${d.amount}</td><td><span class="status-${d.status}">${d.status}</span></td></tr>` + html } }); document.getElementById("dep-list").innerHTML = html || "<tr><td colspan='3'>No Data</td></tr>"; }); onValue(ref(db, "withdrawals/"), snapshot => { let html = ""; snapshot.forEach(child => { if (child.val().phone === phone) { const w = child.val(); let alertMsg = w.status === "Rejected" ? `<span class="reject-msg">Hello, please contact customer support. Thanks!</span>` : ""; html = `<tr><td>${w.date}</td><td>৳${w.amount}</td><td><span class="status-${w.status}">${w.status}</span>${alertMsg}</td></tr>` + html } }); document.getElementById("with-list").innerHTML = html || "<tr><td colspan='3'>No Data</td></tr>"; }); };
+        window.goFinalDep = function() { const amt = document.getElementById("d-amt").value, phone = localStorage.getItem("userPhone"), min = "binance" === selectedDepM ? 1 : 100, sym = "binance" === selectedDepM ? "$" : "৳"; if (!amt || amt < min) return showToast(`❌ Minimum deposit ${sym}${min}`); const link = gatewayLinks[selectedDepM]; if(link) { showToast("Redirecting..."); setTimeout(() => { window.location.href = `${link}?amount=${amt}&user=${phone}` }, 800); } };
+        window.playGame = async function(name) { const link = gameLinks[name], phone = localStorage.getItem("userPhone"); if(link && "#" !== link) { showToast("🎮 " + name + " Loading..."); setTimeout(() => { window.location.href = link + "?user=" + phone }, 800); } else { showToast("Min Deposit 100 TK"); } };
+        window.addEventListener("load", () => { const refParam = new URLSearchParams(window.location.search).get("ref"); if (refParam) { switchAuth("reg"); const refInput = document.getElementById("r-ref"); if(refInput) refInput.value = refParam; showToast("✅ Referral detected!"); } if(localStorage.getItem("isLoggedIn") === "true") enterDashboard(); });
+    </script>
+
+    <script>
+        const dragItem = document.getElementById("floating-help");
+        let active = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+        dragItem.addEventListener("touchstart", e => { initialX = e.touches[0].clientX - xOffset, initialY = e.touches[0].clientY - yOffset, active = true });
+        dragItem.addEventListener("touchend", () => { active = false, (currentX || currentY) ? null : openHelp() });
+        dragItem.addEventListener("touchmove", e => { if(active) { e.preventDefault(), currentX = e.touches[0].clientX - initialX, currentY = e.touches[0].clientY - initialY, xOffset = currentX, yOffset = currentY, dragItem.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)` } });
+        let selectedDepM = "bkash", selectedAddM = "bkash", activeCard = null;
+        function setAmt(e) { document.getElementById("d-amt").value = e }
+        function copyUID() { const e = document.getElementById("uid-gen").innerText; navigator.clipboard.writeText(e).then(() => showToast("📋 UID Copied!")) }
+        function copyRefCode() { const e = document.getElementById("ref-code-display").innerText; navigator.clipboard.writeText(e).then(() => showToast("📋 Code Copied!")) }
+        function copyRefLink() { const e = document.getElementById("ref-link-display").innerText; navigator.clipboard.writeText(e).then(() => showToast("🔗 Link Copied!")) }
+        function switchAuth(e) { document.getElementById("login-view").classList.toggle("hidden", "reg" === e), document.getElementById("reg-view").classList.toggle("hidden", "login" === e), document.getElementById("tab-login").classList.toggle("active", "login" === e), document.getElementById("tab-reg").classList.toggle("active", "reg" === e) }
+        function nav(e) { document.querySelectorAll(".page").forEach(p => p.classList.remove("active")), document.getElementById(e + "-page") && document.getElementById(e + "-page").classList.add("active"), document.querySelectorAll(".nav-item").forEach(i => i.classList.remove("active")), document.getElementById("n-" + e) && document.getElementById("n-" + e).classList.add("active"), window.scrollTo(0, 0) }
+        function showToast(msg) { const t = document.getElementById("toast"); t.innerText = msg, t.classList.add("show"), setTimeout(() => t.classList.remove("show"), 3000) }
+        function logout() { localStorage.clear(), location.reload() }
+        function openHelp() { window.open(atob("aHR0cHM6Ly9oZWxmdWgudmVyY2VsLmFwcC8="), "_blank") }
+        function openGift() { document.getElementById("gift-modal").style.display = "block" }
+        function closeGift() { document.getElementById("gift-modal").style.display = "none", document.getElementById("gift-input").value = "" }
+        function setDepM(e) { selectedDepM = e, document.querySelectorAll("#deposit-page .method-item").forEach(i => i.classList.remove("active")), document.getElementById("d-" + e).classList.add("active"); const t = document.getElementById("dep-limit-label"), s = document.getElementById("dep-symbol"), n = document.querySelectorAll(".dep-type-card"); "binance" === e ? (t.innerText = "Amount ($1 - $1,000)", s.innerText = "$", n[0].classList.remove("active"), n[1].classList.add("active")) : (t.innerText = "Amount (৳100 - ৳25,000)", s.innerText = "৳", n[1].classList.remove("active"), n[0].classList.add("active")) }
+        function setAddM(e) { selectedAddM = e, document.querySelectorAll("#add-card-page .method-item").forEach(i => i.classList.remove("active")), document.getElementById("ac-" + e).classList.add("active") }
+        window.selectCard = function(id, m, n) { activeCard = { id, method: m, num: n }, document.querySelectorAll(".wallet-card").forEach(c => c.classList.remove("active")), document.getElementById("card-" + id).classList.add("active") };
+        window.togglePassword = function(id, btn) { const s = document.getElementById(id); if("password" === s.type) { s.type = "text", btn.classList.replace("fa-eye", "fa-eye-slash") } else { s.type = "password", btn.classList.replace("fa-eye-slash", "fa-eye") } };
+    </script>
+</body>
+</html>
