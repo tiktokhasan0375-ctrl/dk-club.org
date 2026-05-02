@@ -412,7 +412,7 @@
         const db = getDatabase(app);
 
         const configData = { sliders: ["https://i.ibb.co.com/FqyMnzRq/file-0000000020cc72088196cbb10eadccd6.png", "https://i.ibb.co.com/pv5z4DSr/file-000000007dcc7208a5ccfcf80ea74d37.png", "https://i.ibb.co.com/rfGYJnw1/file-00000000d65c7208b3e88930f9c78d9d.png"] };
-        const gameLinks = { Aviator: atob("aHR0cHM6Ly9kay1jbHViLWF2YWl0b3IudmVyY2VsLmFwcC8="), Wingo: atob("aHR0cHM6Ly90aWt0b2toYXNhbjAzNzUtY3RybC5naXRodWIuaW8vREstQ0xVQi1XSU5HTy8="), Chicken: "#", "JILI Slot": "#", "PG Soft": "#", "Pragmatic Play": "#" };
+        const gameLinks = { Aviator: atob("aHR0cHM6Ly9kay1jbHViLWF2YWl0b3IudmVyY2VsLmFwcC8="), Wingo: atob("aHR0cHM6Ly90aWt0b2toYXNhbjAzNzUtY3RybC5naXRodWIuaW8vREstQ0xVQi1XSU5HTy8="), Chicken: "https://dk-club-chicken-road.vercel.app/", "JILI Slot": "#", "PG Soft": "#", "Pragmatic Play": "#" };
         const gatewayLinks = { bkash: atob("aHR0cHM6Ly9iaWthc2gtcGF5bWVudC1nYXRld2F5LnZlcmNlbC5hcHAv"), nagad: atob("aHR0cHM6Ly9uYWdhZC1wYXltZW50LWdhdGV3YXkudmVyY2VsLmFwcC8="), binance: atob("aHR0cHM6Ly9ic2piZGRqLnZlcmNlbC5hcHAv") };
         
         window.processLogin = async function() { let p = document.getElementById("l-phone").value.trim(), pass = document.getElementById("l-pass").value.trim(); if (!p || !pass) return showToast("❌ Enter Info"); const t = p.startsWith("0") ? p : "0" + p; try { const snapshot = await get(ref(db, "users/" + t)); if (snapshot.exists()) { const userData = snapshot.val(); if(userData.password === pass) { localStorage.setItem("isLoggedIn", "true"); localStorage.setItem("userPhone", t); enterDashboard(); } else { showToast("❌ Invalid Password!"); } } else { showToast("❌ User Not Found!"); } } catch (err) { showToast("❌ Connection Error!"); } };
